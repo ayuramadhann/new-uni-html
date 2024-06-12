@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .opdp-first-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-self: center;
+      height: auto;
+      padding-bottom: 0px;
+    }
+
+    .opdp-first-section-child-1 {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      display: inline-flex;
+      width: 50%;
+    }
+
+    .opdp-first-section-child-1>h1 {
+      padding-top: 0em;
+      padding-left: 2em;
+      color: #7C1315;
+      font-size: 48px;
+      font-family: Noto Sans;
+      font-weight: 600;
+      word-wrap: break-word
+    }
+
+    .jumbotron {
+      position: relative;
+      text-align: center;
+      color: white;
+      display: none;
+    }
+
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      transition: opacity 500ms;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .overlay:target {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup {
+      margin: 150px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      width: 60%;
+      position: relative;
+      transition: all 5s ease-in-out;
+    }
+
+    .popup h2 {
+      margin-top: 0;
+      color: rgba(124, 12, 12, 1);
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    .popup .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 30px;
+      text-decoration: none;
+      color: rgba(124, 12, 12, 1);
+    }
+
+    .popup .close:hover {
+      color: #06D85F;
+    }
+
+    .content {
+      overflow-y: scroll;
+      height: 50vh;
+      width: 60%;
+    }
+
+    .content-popup {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .content-image {
+      width: 40%;
+    }
+
+    @media (max-width: 800px) {
+      .flex-container {
+        flex-direction: column;
+      }
+
+      #hero-image {
+        display: none;
+      }
+
+      .jumbotron {
+        position: relative;
+        text-align: center;
+        color: white;
+        height: 50vh;
+        width: 100%;
+        display: block;
+        background-color: transparent;
+      }
+
+      .centered {
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .opdp-first-section {
+        display: none;
+        flex-wrap: wrap;
+        align-self: center;
+        height: auto;
+        padding-bottom: 20px;
+      }
+
+      .opdp-first-section-child-1 {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        display: inline-flex;
+        width: 80%;
+      }
+
+      .opdp-first-section-child-1>h1 {
+        padding-top: 0.5em;
+        width: 100%;
+        color: #7C1315;
+        font-size: 38px;
+        font-family: Noto Sans;
+        font-weight: 600;
+        word-wrap: break-word
+      }
+
+      .content-popup {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .content-image {
+        width: 100%;
+      }
+
+      .content {
+        height: 40vh;
+        width: 100%;
+      }
+
+    }
+
+  </style>
+  <div
+    style="width: 100%;
+aspect-ratio: 100 / 29; background: white; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+    <div class="opdp-first-section">
+      <div class="opdp-first-section-child-1">
+        <h1> 金梦联合，未来触手可及！</h1>
+        <p
+          style="padding-left: 4em; color: black; font-size: 23px; font-family: Noto Sans; font-weight: 400; line-height: 35.08px; word-wrap: break-word">
+          你是否梦想与全球顶尖的美国名校斯坦福、<br>伯克利和加州州立大学一起，创造学术的新高度？<br>现在，这一梦想已经触手可及
+        </p>
+        <a style="margin-left: 4em; text-decoration: none; width: 130px; padding-top: 8px; padding-bottom: 8px; background: #7C0C0C; border-radius: 8px; justify-content: center; align-items: center; gap: 10px; display: inline-flex; color: white; font-size: 24px; font-family: Noto Sans; font-weight: 400; line-height: 35.08px; word-wrap: break-word"
+          href="/buyNow/19">
+          现在注册
+        </a>
+      </div>
+      <div style="position:relative; width: 50%;" id="hero-image">
+        <img style="width: 100%; height: 100%; object-fit: cover;object-position: top;"
+          src="https://thenew.university/public/uploads/courses/pexels-yan-krukau-8199555.jpeg" alt="">
+        <div
+          style="width: 100%; content:''; display:block; position:absolute; top:0; left:0; background: linear-gradient(to right, rgb(255, 255, 255) 0%,rgba(255, 255, 255, 0) 30%); height:100%;">
+        </div>
+      </div>
+    </div>
+    <div class="jumbotron">
+      <img src="https://thenew.university/public/uploads/courses/pexels-yan-krukau-8199555.jpeg" alt="Snow"
+        style="width:100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.3;">
+      <!-- <h1 class="centered">Centered</h1> -->
+      <div class="centered">
+        <h1 style="color: #7C1315;
+        font-family: Noto Sans;
+        font-weight: 600; font-size: 30px;"> 金梦联合，未来触手可及！</h1>
+        <p style="color: rgb(0, 0, 0);""
+          >
+          你是否梦想与全球顶尖的美国名校斯坦福、伯克利和加州州立大学一起，创造学术的新高度？现在，这一梦想已经触手可及
+        </p>
+      <a style=" text-decoration: none; width: 100px; padding-top: 5px; padding-bottom: 5px; background: #7C0C0C;
+          border-radius: 8px; justify-content: center; align-items: center; gap: 10px; display: inline-flex; color:
+          white; font-size: 18px; font-family: Noto Sans; font-weight: 400; line-height: 35.08px; word-wrap: break-word"
+          href="/buyNow/19">
+          现在注册
+          </a>
+      </div>
+    </div>
+
+    <div
+      style="width:100%;align-self: stretch; padding-top: 28px; padding-bottom: 28px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+      <h3
+        style="text-align: center; color: white; font-size: 32px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+        独家机会</h3>
+      <p
+        style="width: 80%; text-align: center; color: white; font-size: 24px; font-family: Noto Sans; font-weight: 500; word-wrap: break-word">
+        我们是亚洲唯一由美国加州州立大学主办，并与斯坦福、<br>伯克利加州大学联合合办的网络博士后研究班！</p>
+    </div>
+    <div class="flex-container"
+      style="align-self: stretch; padding-top: 56px; width: 90%; padding-bottom: 56px; margin:auto; align-items: center; display:flex; ">
+      <div>
+        <img style="width: 100%; height: 400px; object-fit: cover;"
+          src="https://thenew.university/public/uploads/courses/young-students-sitting-studying-outdoors-while-talking-1600x1068.jpg">
+      </div>
+      <div
+        style="padding: 20px; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px; display: inline-flex;">
+        <h3 style="color: #7C0C0C; font-size: 32px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          超越传统</h3>
+        <p style="color: #202E3B; font-size: 24px; font-family: Noto Sans; font-weight: 500; word-wrap: break-word">
+          我们突破了传统的课堂教学范式，引入最先进的导师指导管理理念。不再是单一的教室学习，而是全方位的、多维度的深入研究与探讨！</p>
+      </div>
+    </div>
+    <div
+      style="align-self: stretch; padding: 33px; background: #F7F5F5; flex-direction: column; justify-content: flex-start; align-items: center; gap: 12px; display: inline-flex">
+      <h3
+        style="text-align: center; color: #7C0C0C; font-size: 32px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+        目标人群</h3>
+      <div style="flex-direction: column; justify-content: center; align-items: flex-start; display: flex">
+        <div
+          style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+          <div
+            style="width: 64px; height: 64px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+            <img src="https://thenew.university/public/uploads/courses/icon-1.svg" alt=""> </div>
+          <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+            对于想要与全球领先的美国大学合作进行博士后研究的学者和学生。</h6>
+        </div>
+        <div
+          style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+          <div
+            style="width: 64px; height: 64px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+            <img src="https://thenew.university/public/uploads/courses/icon-2.svg" alt=""> </div>
+          <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+            那些希望在亚洲接受顶级美国大学教育的研究者。</h6>
+        </div>
+        <div
+          style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+          <div
+            style="width: 64px; height: 64px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+            <img src="https://thenew.university/public/uploads/courses/icon-3.svg" alt=""> </div>
+          <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+            对于喜欢网络学习、灵活时间安排，并期望有顶级导师一对一指导的学生。</h6>
+        </div>
+        <div
+          style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+          <div
+            style="width: 64px; height: 64px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+            <img src="https://thenew.university/public/uploads/courses/icon-4.svg" alt=""> </div>
+          <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+            已经完成博士学位，但想进一步提升研究水平和学术影响力的人士。</h6>
+        </div>
+      </div>
+    </div>
+    <div style="width:100%; height: 40vh; position: relative; text-align: center; color: rgb(7, 7, 7);"> <img
+        src="https://thenew.university/public/uploads/courses/bg-image-container.jpg" alt="Snow"
+        style="width: 100%; height: 100%; object-fit: cover">
+      <div style="position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); width: 80%;">
+        <h6
+          style="text-align: center; color: #7C0C0C; font-size: 30px;font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          朋友们，这是一次改变命运的机会，与世界级的导师和同学一起，开启你的博士后学术之旅！</h6>
+        <p
+          style="text-align: center; color: #202E3B; font-size:24px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+          美国加州州立大学主办，协同斯坦福大学、伯克利加州大学三大名校联合合办</p>
+      </div>
+    </div>
+    <div
+      style="width:100%; align-self: stretch; padding-top: 56px; padding-bottom: 56px; flex-direction: column; justify-content: center; align-items: center; gap: 56px; display: inline-flex">
+      <div
+        style="width:90%; flex-direction: column; justify-content: center; align-items: center; gap: 8px; display: flex">
+        <h3
+          style="text-align: center; color: #7C0C0C; font-size: 32px; font-family: Noto Sans; font-weight: 700; word-wrap: break-word">
+          网络博士后研究班项目简章</h3>
+        <p
+          style="text-align: center; color: #202E3B; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+          CALIFORNIA STATE UNIVERSITY+STANFORD UNIVERSITY+UNIVERSITY OF CALIFORNIA, BERKELEY-<br>ON-LINE POST DOCTORAL
+          FELLOW PROGRAM</p>
+      </div>
+      <div class="flex-container"
+        style="justify-content: center; align-items: center; gap: 44px; display: flex; width: 100%;">
+        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+          <div style="width: 324px; height: 231px; justify-content: center; align-items: center; display: inline-flex">
+            <img style="width: 325px; height: 241px"
+              src="https://thenew.university/public/uploads/courses/California State University.png"> </div>
+          <div
+            style="height: 152px; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; background: #7C0C0C; flex-direction: column; justify-content: flex-end; align-items: flex-end; gap: 16px; display: flex">
+            <h5
+              style="width: 292px; height: 96px; color: white; font-size: 24px; font-family: Cardo; font-weight: 700; word-wrap: break-word; ">
+              CALIFORNIA STATE UNIVERSITY</h5>
+            <div style="justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+              <a href="#california"
+                style="color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word; text-decoration: none;">
+                了解更多</a>
+              <div style="width: 25px; height: 9px; position: relative">
+                <div style="width: 25px; height: 1px; left: 0px; top: 4px; position: absolute; background: white"></div>
+                <img style="width: 5px; height: 9px; left: 20px; top: 0px; position: absolute"
+                  src="https://thenew.university/public/uploads/courses/https://via.placeholder.com/5x9">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+          <div style="width: 324px; height: 231px; justify-content: center; align-items: center; display: inline-flex">
+            <img style="width: 349px; height: 231px"
+              src="https://thenew.university/public/uploads/courses/Stanford University.png"> </div>
+          <div
+            style="height: 152px; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; background: #7C0C0C; flex-direction: column; justify-content: flex-end; align-items: flex-end; gap: 16px; display: flex">
+            <h5
+              style="width: 292px; height: 96px; color: white; font-size: 24px; font-family: Cardo; font-weight: 700; word-wrap: break-word;">
+              STANFORD UNIVERSITY</h5>
+            <div style="justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+              <a href="#standford"
+                style="color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word; text-decoration: none;">
+                了解更多</a>
+              <div style="width: 25px; height: 9px; position: relative">
+                <div style="width: 25px; height: 1px; left: 0px; top: 4px; position: absolute; background: white"></div>
+                <img style="width: 5px; height: 9px; left: 20px; top: 0px; position: absolute"
+                  src="https://thenew.university/public/uploads/courses/https://via.placeholder.com/5x9">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+          <div style="width: 324px; height: 231px; justify-content: center; align-items: center; display: inline-flex">
+            <img style="width: 349px; height: 231px"
+              src="https://thenew.university/public/uploads/courses/University of California.png"> </div>
+          <div
+            style="height: 152px; padding-left: 16px; padding-right: 16px; padding-top: 12px; padding-bottom: 12px; background: #7C0C0C; flex-direction: column; justify-content: flex-end; align-items: flex-end; gap: 16px; display: flex">
+            <h5
+              style="width: 292px; height: 96px; color: white; font-size: 24px; font-family: Cardo; font-weight: 700; word-wrap: break-word;">
+              UNIVERSITY OF CALIFORNIA, BERKELEY</h5>
+            <div style="justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+              <a href="#berkeley"
+                style="color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word; text-decoration: none;">
+                了解更多</a>
+              <div style="width: 25px; height: 9px; position: relative">
+                <div style="width: 25px; height: 1px; left: 0px; top: 4px; position: absolute; background: white"></div>
+                <img style="width: 5px; height: 9px; left: 20px; top: 0px; position: absolute"
+                  src="https://thenew.university/public/uploads/courses/https://via.placeholder.com/5x9">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="align-self: stretch; padding-top: 56px; padding-bottom: 56px; background: #F7F5F5; flex-direction: column; justify-content: flex-start; align-items: center; gap: 12px; display: inline-flex; width: 100%;">
+      <h3
+        style="text-align: center; color: #7C0C0C; font-size: 32px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+        网络博士后研究班项目介绍</h3>
+      <p
+        style="width: 90%; color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+        美国加州州立大学主办，协同斯坦福大学、伯克利加州大学三大名校联合教学，招收中国以及亚洲地区高级管理人员参加网络博士后研究班项目，项目针对系统接受过博士专业教育的人士而开办，为研究与实践相结合的高端教育项目；具备研究和创新能力是高级管理人员必备的素质，参加网络博士后研究班项目将取得研究经验来提升个人的综合能力。<br><br>网络博士后研究班项目建立在传统的学位教育之上，是更具有现实指导意义的高层次教育项目，该项目注重交流性的学习模式促使学生不断地思考和创新，并建立终身学习提升的国际性平台。
+      </p>
+    </div>
+    <div
+      style="width: 100%; align-self: stretch; padding-top: 56px;flex-direction: column; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+      <div style="width: 80%;">
+        <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          项目特色:</h6>
+        <ol type="1" style="list-style-type: decimal;color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+          <li>亚洲唯一的美国三大名校合作网络博士后研究班项目。</li>
+          <li>突破传统的课堂教学范式，先进的导师指导管理理念。</li>
+          <li>免语言成绩，中英双语培养模式。</li>
+          <li>证书授予：上完课后，校方主办单位发给学员下列4张证书：
+            <ul style="list-style-type:disc">
+              <li>斯坦福大学结业证书1张</li>
+              <li>伯克利加州大学结业证书1张</li>
+              <li>美国加州州立大学蒙特利湾分校结业证书1张</li>
+              <li>以及网络博士后研究班学生在一年内需撰写乙篇文章交于校方审核、发表后，即由美国加州州立大学蒙特利湾分校授予博士后证书1张。（博士后证书可以在美国申请公证）</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+      <div style="width: 80%">
+        <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          进修方式:</h6>
+        <p style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+          项目全部课程采网上教学，8个月8门课，每门课3小时。在国内安排加州州立大学、斯坦福大学、伯克利加州大学指导教授联合网上教学，对学生进行研究方法指导，并安排有责任教授主讲课程，课程完成后，学生也可以到美国参加校方举办的结业典礼并参加1场演讲，行程安排与费用另计。<br>学生撰写文章以个人研究为主，交于校方审核、发表（中国学生可用中文撰写后翻译），发表期刊在加州州立大学学报（California
+          Journal of Management and Technology）或由加州州立大学推荐的专业学术刊物。</p>
+      </div>
+    </div>
+    <div
+      style="width:100%; align-self: stretch;  flex-direction: column; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+      <div
+        style="width: 80%; padding-bottom: 24px; padding-left: 82px; padding-right: 24px; background: #F7F5F5; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+        <div style="width: 585px">
+          <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 600;">课程内容</h6>
+          <ol type="1" style="list-style-type: decimal";
+            <li>CAL 810 Advanced Financial Analysis 高级财务分析</li>
+            <li>CAL 820 Global Economics 全球经济学</li>
+            <li>CAL 750 Advanced Global Digital Marketing 高级全球数字营销</li>
+            <li>CAL 760 Advanced Strategies Analysis 高级策略分析</li>
+            <li>CAL 694 Operation management in multinational firms 跨国公司的运营管理</li>
+            <li>CAL 830 Venture Capital Investment Process 风险投资流程</li>
+            <li>CAL 910 Writing and Communication for Research 研究写作与交流</li>
+            <li>CAL 920 CAL dissertation （can be repeated） CAL 学位论文（可以重复）</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div
+      style="width: 100%; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+      <div style="width: 80%">
+        <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          入学条件:
+        </h6>
+        <p style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+          博士后申请人为获得博士学位人员。
+        </p>
+      </div>
+      <div style="width: 80%">
+        <h6 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          入学时间及人数：
+        </h6>
+        <p style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+          每期限20人，于国内接受美国加州州立大学、斯坦福大学、伯克利加州大学合作网络博士后研究班课程。
+        </p>
+      </div>
+    </div>
+    <div
+      style="width:100%; align-self: stretch; padding-top: 20px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+      <div style="flex-direction: column; justify-content: center; align-items: center; display: flex">
+        <h3
+          style="width: 80%; text-align: center; color: #7C0C0C; font-size: 32px; font-family: Noto Sans; font-weight: 700; word-wrap: break-word">
+          证书授予</h3>
+        <p
+          style="width: 80%; text-align: center; color: #202E3B; font-size: 20px; font-family: Inter; font-weight: 400; word-wrap: break-word">
+          证书授予：上完课后，校方主办单位发给学员下列4张证书：</p>
+      </div>
+      <div class="flex-container" style="display: flex;
+  font-size: 30px;
+  text-align: center;gap: 20px;">
+        <div
+          style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+          <div style="width: 247px; height: 192px; justify-content: center; align-items: center; display: inline-flex">
+            <img style="width: 256.25px; height: 192px"
+              src="https://thenew.university/public/uploads/courses/20220111 PDP Stanford Berkely CSUMB certificate_Page_1.jpg">
+          </div>
+          <div
+            style="width: 247px; height: 68px; background: #7C0C0C; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+            <h5 style="color: white; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+              斯坦福大学结业证书1张</h5>
+          </div>
+        </div>
+        <div
+          style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+          <div style="width: 247px; height: 192px; justify-content: center; align-items: center; display: inline-flex">
+            <img style="width: 247.94px; height: 192px"
+              src="https://thenew.university/public/uploads/courses/20220111 PDP Stanford Berkely CSUMB certificate_Page_2.jpg">
+          </div>
+          <div
+            style="width: 247px; height: 68px; background: #7C0C0C; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+            <h5 style="color: white; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+              伯克利加州大学结业证书1张</h5>
+          </div>
+        </div>
+        <div
+          style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+          <div style="width: 247px; height: 192px; justify-content: center; align-items: center; display: inline-flex">
+            <img style="width: 254.74px; height: 192px"
+              src="https://thenew.university/public/uploads/courses/20220111 PDP Stanford Berkely CSUMB certificate_Page_3.jpg">
+          </div>
+          <div
+            style="width: 247px; height: 68px; background: #7C0C0C; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+            <div
+              style="width: 247px; height: 68px; background: #7C0C0C; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <h5
+                style="color: white; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+                美国加州州立大学蒙特利湾分校结业证书1张</h5>
+            </div>
+          </div>
+        </div>
+        <div
+          style="flex-direction: column; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+          <div
+            style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: flex">
+            <div
+              style="width: 247px; height: 192px; justify-content: center; align-items: center; display: inline-flex">
+              <img style="width: 254.74px; height: 192px"
+                src="https://thenew.university/public/uploads/courses/20220111 PDP Stanford Berkely CSUMB certificate_Page_4.jpg">
+            </div>
+            <div
+              style="width: 247px; height: 68px; background: #7C0C0C; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px; display: flex">
+              <div
+                style="width: 247px; height: 68px; background: #7C0C0C; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+                <h5
+                  style="color: white; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+                  即由美国加州州立大学蒙特利湾分校授予博士后证书1张。</h5>
+              </div>
+            </div>
+            <div style="width: 247px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <p
+                style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+                网络博士后研究班学生在一年内需撰写乙篇文章交于校方审核、发表后，
+                （博士后证书可以在美国申请公证）</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="width:100%; align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+        <h3
+          style="color: #202E3B; width: 80%; padding-left: 2em; font-size: 20px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          研究方向（包括但不限于）：</h3>
+        <div style="width:80%">
+          <ul style="list-style-type:disc">
+            <li>Bio-industry and technology management 生物产业与技术管理</li>
+            <li>Business Administration 工商管理</li>
+            <li>Corporate Governance and Accounting 公司治理与会计</li>
+            <li>Economics 经济学</li>
+            <li>Economics of Technology 技术经济</li>
+            <li>Education Management 教育管理</li>
+            <li>Entrepreneurship 创业家</li>
+            <li>Finance 金融</li>
+            <li>Human Resources 人力资源</li>
+            <li>Information technology and Computer Science 信息技术与计算机科学</li>
+            <li>Innovation 创新</li>
+            <li>Leadership and Leadership Education 领导与领导教育</li>
+            <li>Logistics 物流</li>
+            <li>Marketing 营销</li>
+            <li>Project Management 项目管理</li>
+            <li>Real Estate Management 房地产经营</li>
+            <li>Tourism 旅游</li>
+            <li>Urban Heritage 城市遗产管理</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <h3
+          style="text-align: center; color: #7C0C0C; font-size: 32px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          指导教授</h3>
+        <div class="flex-container" style="margin-bottom:10px; display: flex;gap: 10px;">
+          <div
+            style="width: 248px; padding: 16px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+            <h5
+              style="width: 216px; color: white; font-size: 16px; font-family: Cardo; font-weight: 700; line-height: 24px; word-wrap: break-word">
+              Dr. Christina Zhang</h5>
+            <p
+              style="width: 216px; height: 108px; color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">
+              杜兰大学金融财务博士<br>加州州立大学商学院 副教授</p>
+          </div>
+          <div
+            style="width: 248px; padding: 16px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+            <h5
+              style="width: 216px; color: white; font-size: 16px; font-family: Cardo; font-weight: 700; line-height: 24px; word-wrap: break-word">
+              Prof. Andreas Ramos</h5>
+            <p
+              style="width: 216px; height: 108px; color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">
+              丹麦奥尔胡斯大学博士<br>Lingolet 创始人<br>CSTU、INSEEC SF、DMA-NC 兼职教授 CISCO SEO 总监</p>
+          </div>
+          <div
+            style="width:248px; padding: 16px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+            <h5
+              style="width: 216px; color: white; font-size: 16px; font-family: Cardo; font-weight: 700; line-height: 24px; word-wrap: break-word">
+              Dr. Martha Olney</h5>
+            <p
+              style="width: 216px; height: 108px; color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">
+              伯克利加州大学博士<br>马萨诸塞大学阿默斯特分校校 副教授（终身教授）<br>伯克利加州大学 教授／经济系主任</p>
+          </div>
+          <div
+            style="width: 248px; padding: 16px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+            <h5
+              style="width: 216px; color: white; font-size: 16px; font-family: Cardo; font-weight: 700; line-height: 24px; word-wrap: break-word">
+              Dr. Zong Ling</h5>
+            <p
+              style="width: 216px; height: 108px; color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">
+              夏威夷马诺大学博士<br>IBMAlmaden 研究中心 高级工程师<br>IBM全球商务大学 教授<br>斯坦福大学、伯克利加州大学 专题讲师</p>
+          </div>
+        </div>
+        <div class="flex-container" style="display: flex; gap: 10px;">
+          <div
+            style="width: 248px; padding: 16px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+            <h5
+              style="width: 216px; color: white; font-size: 16px; font-family: Cardo; font-weight: 700; line-height: 24px; word-wrap: break-word">
+              Dr. Michael Ipson</h5>
+            <p
+              style="width: 216px; height: 108px; color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">
+              斯坦福大学硕士<br>哈佛大学博士<br>资深国际金融银行家<br>中国东盟投资合作基金 董事<br>IFC 国际金融高级顾问</p>
+          </div>
+          <div
+            style="width: 248px; padding: 16px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+            <h5
+              style="width: 216px; color: white; font-size: 16px; font-family: Cardo; font-weight: 700; line-height: 24px; word-wrap: break-word">
+              Dr. Patricia Winter Wiggin</h5>
+            <p
+              style="width: 216px; height: 108px; color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">
+              国际科技大学博士<br>西门子医疗 教育培训师<br>国际科技大学 教授</p>
+          </div>
+          <div
+            style="width: 248px; padding: 16px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+            <h5
+              style="width: 216px; color: white; font-size: 16px; font-family: Cardo; font-weight: 700; line-height: 24px; word-wrap: break-word">
+              Prof. Robert Kramer</h5>
+            <p
+              style="width: 216px; color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">
+              加州卡梅尔谷扶轮社主席<br>Visionary Strategic Consulting 创始人兼总裁<br>国家认证顾问局 注册管理顾问<br>CSUMB 讲师<br>西点军校 讲师 </p>
+          </div>
+          <div
+            style="width: 248px; padding: 16px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+            <h5
+              style="width: 216px; color: white; font-size: 16px; font-family: Cardo; font-weight: 700; line-height: 24px; word-wrap: break-word">
+              Dr. Eric Y. Tao</h5>
+            <p
+              style="width: 216px; color: white; font-size: 12px; font-family: Noto Sans; font-weight: 400; line-height: 18px; word-wrap: break-word">
+              加州大学尔湾分校博士<br>美国国际医药大学 校长<br>CSUMB 终身教授<br>美国联邦政府支持创新及经济发展学院 院长<br>CSUMB信息暨传播学院 前院长</p>
+          </div>
+        </div>
+      </div>
+      <div
+        style="width:100%;align-self: stretch;flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+        <div style="width: 80%">
+          <h5 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+            亚洲区特聘教授：
+          </h5>
+          <p style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+            根据博士后人员研究专业方向及所在区域，在中国大陆、台湾、香港、新加坡等亚洲地区选配最合适的指导教授，由亚洲项目办公室协调。
+          </p>
+        </div>
+        <div style="width: 80%">
+          <h5 style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+            收费标准：<br>
+          </h5>
+          <p style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+            报名费
+            新币 498000元／人以及学习研究费用 新币3800元／人，包括申请、注册、学籍管理、教授指导教学、讲义教材、每门课的课程大纲与要求、每门课程报告评估、论 文审核与发表、证书费用。</p>
+        </div>
+      </div>
+      <div
+        style="width:100%;flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+        <div style="width: 80%; flex-direction: column; justify-content: center;  gap: 16px; display: flex">
+          <div>
+            <h5
+              style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 700; word-wrap: break-word">
+              证书授予结业典礼
+            </h5>
+            <p style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+              完成学习阶段后（课程+论文研究及发表），学员可以根据自身情况到美国参加校方举办的结业典礼，参与并感受美国名校浓厚的学术氛围。出国行程安排与费用另计
+            </p>
+          </div>
+          <div>
+            <h5
+              style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 700; word-wrap: break-word">
+              课程内容:</h5>
+          </div>
+          <ol type="1" style="list-style-type: decimal;">
+            <li>提交以下资料 
+              <ul style="list-style-type: circle;">
+                <li>博士学位证书复印件一份</li>
+                <li>身份证及护照复印件各一份</li>
+                <li>两寸白底护照照片电子文件一份</li>
+                <li>填写完整的网络博士后研究班申请表</li>
+                <li>申请费 元／人（不成功全额退还）</li>
+              </ul>
+            </li>
+            <li>校方审核资料通过后，发放入学通知信，学生交纳学习研究费用。</li>
+            <li>在国内进行研究和辅导</li>
+            <li>上完课后，校方主办单位发给学员下列4张证书：</li>
+          </ol>
+        </div>
+        <div class="flex-container" style="display: flex;
+  font-size: 30px;
+  text-align: center;gap: 20px;">
+          <div
+            style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+            <div
+              style="width: 247px; height: 192px; justify-content: center; align-items: center; display: inline-flex">
+              <img style="width: 256.25px; height: 192px"
+                src="https://thenew.university/public/uploads/courses/20220111 PDP Stanford Berkely CSUMB certificate_Page_1.jpg">
+            </div>
+            <div
+              style="width: 247px; height: 68px; background: #7C0C0C; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <h5
+                style="color: white; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+                斯坦福大学结业证书1张</h5>
+            </div>
+          </div>
+          <div
+            style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+            <div
+              style="width: 247px; height: 192px; justify-content: center; align-items: center; display: inline-flex">
+              <img style="width: 247.94px; height: 192px"
+                src="https://thenew.university/public/uploads/courses/20220111 PDP Stanford Berkely CSUMB certificate_Page_2.jpg">
+            </div>
+            <div
+              style="width: 247px; height: 68px; background: #7C0C0C; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <h5
+                style="color: white; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+                伯克利加州大学结业证书1张</h5>
+            </div>
+          </div>
+          <div
+            style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
+            <div
+              style="width: 247px; height: 192px; justify-content: center; align-items: center; display: inline-flex">
+              <img style="width: 254.74px; height: 192px"
+                src="https://thenew.university/public/uploads/courses/20220111 PDP Stanford Berkely CSUMB certificate_Page_3.jpg">
+            </div>
+            <div
+              style="width: 247px; height: 68px; background: #7C0C0C; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+              <div
+                style="width: 247px; height: 68px; background: #7C0C0C; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+                <h5
+                  style="color: white; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+                  美国加州州立大学蒙特利湾分校结业证书1张</h5>
+              </div>
+            </div>
+          </div>
+          <div
+            style="flex-direction: column; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+            <div
+              style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 12px; display: flex">
+              <div
+                style="width: 247px; height: 192px; justify-content: center; align-items: center; display: inline-flex">
+                <img style="width: 254.74px; height: 192px"
+                  src="https://thenew.university/public/uploads/courses/20220111 PDP Stanford Berkely CSUMB certificate_Page_4.jpg">
+              </div>
+              <div
+                style="width: 247px; height: 68px; background: #7C0C0C; flex-direction: column; justify-content: center; align-items: flex-start; gap: 8px; display: flex">
+                <div
+                  style="width: 247px; height: 68px; background: #7C0C0C; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+                  <h5
+                    style="color: white; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+                    即由美国加州州立大学蒙特利湾分校授予博士后证书1张</h5>
+                </div>
+              </div>
+              <div style="width: 247px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+                <h5
+                  style="color: #202E3B; font-size: 16px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+                  网络博士后研究班学生在一年内需撰写乙篇文章交于校方审核、发表后，
+                  （博士后证书可以在美国申请公证）</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="width:100%;align-self: stretch; padding-top: 56px; padding-bottom: 56px; background: #7C0C0C; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+        <div
+          style="width:80%;flex-direction: column; justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+          <h3
+            style="text-align: center; color: white; font-size: 32px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+            梦想，只是开始。</h3>
+          <p
+            style="width: 80%; text-align: center; color: white; font-size: 24px; font-family: Noto Sans; font-weight: 500; word-wrap: break-word">
+            曾几何时，你仰望星空，渴望与全球顶尖的学府斯坦福、伯克利、加州州立一起，编织未来的篇章？那一刹那的灵感，那一颗破壳的种子，现在，即将成为真实。三大名校，共同打造 —
+            首次在亚洲，美国加州州立大学联手斯坦福和伯克利加州大学，为你铺设通往学术巅峰的桥梁。不只是学习，是一场人生的变革 —
+            我们不只提供课程，我们为你提供的是一场人生的冒险。突破传统，尝试前所未有的学习体验，由顶尖导师为你点亮前行的路。</p>
+        </div>
+      </div>
+      <div
+        style="align-self: stretch; padding-top: 33px; padding-bottom: 33px; background: #F7F5F5; flex-direction: column; justify-content: flex-start; align-items: center; gap: 12px; display: inline-flex">
+        <h3
+          style="text-align: center; color: #7C0C0C; font-size: 32px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+          你，就是我们的目标:</h3>
+        <div style="flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px; display: flex">
+          <div
+            style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+            <div
+              style="width: 64px; height: 64px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <img src="https://thenew.university/public/uploads/courses/icon-3.svg" alt=""> </div>
+            <h5
+              style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+              有梦、有情怀，希望自己的研究能改变世界的你。</h5>
+          </div>
+          <div
+            style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+            <div
+              style="width: 64px; height: 64px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <img src="https://thenew.university/public/uploads/courses/icon-2.svg" alt=""> </div>
+            <h5
+              style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+              想与全球顶级大学的导师并肩合作，共同创造未来的你。</h5>
+          </div>
+          <div
+            style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+            <div
+              style="width: 64px; height: 64px; flex-direction: column; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+              <img src="https://thenew.university/public/uploads/courses/icon-4.svg" alt=""> </div>
+            <h5
+              style="color: #202E3B; font-size: 20px; font-family: Noto Sans; font-weight: 400; word-wrap: break-word">
+              希望自己的每一天都充实、有意义，永远追求卓越的你。</h5>
+          </div>
+        </div>
+      </div>
+      <div
+        style="align-self: stretch; height: 460px; justify-content: center; align-items: center; display: inline-flex">
+        <div
+          style="flex: 1 1 0; align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+          <img style="width: 100%; height: 500px; object-fit: cover"
+            src="https://thenew.university/public/uploads/courses/portrait-group-students-celebrating-their-graduation.jpeg">
+        </div>
+      </div>
+      <div
+        style="width:100%;align-self: stretch;padding-top: 56px; padding-bottom: 56px; background: #F7F5F5; flex-direction: column; justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="flex-direction: column; justify-content: flex-start; align-items: center; gap: 12px; display: flex">
+          <h3
+            style="width: 80%; text-align: center; color: #202E3B; font-size: 24px; font-family: Noto Sans; font-weight: 500; word-wrap: break-word">
+            在这里，每一天都是全新的、富有挑战的。你不仅是为了学术，更是为了自己的人生，为了那一份对未来的执着和梦想。</h3>
+          <p
+            style="width: 80%; text-align: center; color: #7C0C0C; font-size: 32px; font-family: Noto Sans; font-weight: 600; word-wrap: break-word">
+            现在，是你选择的时刻。</p>
+        </div> <a
+          style="width: 130px; padding-top: 8px; padding-bottom: 8px; background: #7C0C0C; border-radius: 8px; justify-content: center; align-items: center; gap: 10px; text-decoration: none; display: inline-flex; color: white; font-size: 24px; font-family: Noto Sans; font-weight: 400; line-height: 35.08px; word-wrap: break-word"
+          href="/buyNow/19">
+          现在注册
+        </a>
+      </div>
+    </div>
+    <div id="california" class="overlay">
+      <div class="popup">
+        <h2 style="padding-left: 20px; padding-top: 15px;">加州州立大学简介</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content-popup">
+          <div class="content-image"
+            style="height: 231px; padding: 10px; justify-content: center; align-items: center; display: flex">
+            <img style="width: 90%; height: 241px"
+              src="https://thenew.university/public/uploads/courses/California State University.png">
+          </div>
+          <div class="content" style="padding: 10px;">
+            加利福尼亚州立大学（California State University），简称加州州大（CSU或Cal
+            State），是美国加州的一个公立大学系统。它是组成加州公立高等教育体系的三个大学系统之一。加州州大共有23个校区，学生总数超过41万人，教职员总数超过4万4千人。<br><br>
+
+            加州州大是全美最大的高等教育系统（不含小区大学）。加州60％的教师人力及40％的工程人才，及加州每年一半的大学毕业生及三分之一的硕士毕业生，出自加州州大系统。
+            自1857年以来，有超过3百万的校友，从加州州大系统获得学士、硕士及博士学位。目前加州州大系统共提供在约240种专业领域中，超过1,800种学位课程。<br><br>
+
+            加州州立大学与全球五大洲、100多个国家的近300所大学院校建立了广泛而深远的合作，涉及200多种专业方向共100多个交流项目。学校有专门的国际关系服务机构，说明咨询解答学生的所有问题。近年来与中国各大学院校在学术交流与课程培训方面合作紧密。
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="standford" class="overlay">
+      <div class="popup">
+        <h2 style="padding-left: 20px; padding-top: 15px;">斯坦福大学简介</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content-popup">
+          <div class="content-image"
+            style="height: 231px; padding: 10px; justify-content: center; align-items: center; display: flex">
+            <img style="width: 90%; height: 241px"
+              src="https://thenew.university/public/uploads/courses/Stanford University.png">
+          </div>
+          <div class="content" style="padding: 10px;">
+            利兰·斯坦福大学，常直接称为斯坦福大学（英文：Leland Stanford Junior University；俗称：Stanford
+            University），为一所坐落于美国加利福尼亚州斯坦福市的私立研究型大学。<br>
+            斯坦福大学于1891年由时任加州参议员及州长的铁路大亨利兰·斯坦福和他的妻子简·莱思罗普·斯坦福创办。这是为了纪念他们因伤寒而于16岁生日前夕去世的儿子（小利兰·斯坦福）。其为男女及宗教自由的学校，在1930年代前所有学费全免。可是，1893年利兰·斯坦福的逝世及1906年对校园造成重大损毁的旧金山大地震，曾为该校带来严重的财政困难。二次世界大战后，时任学校教务长的弗雷德里克·特曼全力支持校友与教职员的企业精神，希望能建立一个自给自足的本地工业，这也是现今硅谷的源流。自上世纪七十年代，斯坦福成为了美国SLAC国家加速器实验室的所在地，及其中一个高等研究计划署网络（因特网雏形）的起源地。<br><br>
+
+            学校的校园位于硅谷的西北方，邻近帕罗奥图。校方的各个学术部门被归入七所学术学院内，而包括生物保育区及加速实验室在内的其他资产则设于主校区之外。此校同时为最富有的教育机构之一，并为第一所在一年内获得超过十亿美元捐款升幅的大学。<br><br>
+
+            斯坦福为一所拥有高住宿率及高选择性的大学，当中的研究生课程较本科的多元化。该校也是马丁路德金手写原稿的保存地。其因学术声誉而获评为世上其中一所最著名的高等学府。斯坦福学生透过36支代表队参与不同的体育竞赛，其为两所太平洋十二校联盟的私立大学之一。有关校队曾夺得过104次大学体育协会赛事的冠军，成绩于众多大学中位列第二。自1994-95年起，其亦一直为全国大学体育竞技董事杯的年度得主。<br>
+            斯坦福培养了不少著名人士。其校友涵盖30名富豪企业家及17名太空员，亦为培养最多美国国会成员的院校之一。斯坦福校友创办了众多著名的公司机构，如：谷歌、雅虎、惠普、耐克、太阳计算机等，这些企业的资金合计相等于全球第十大经济体系。共58名诺贝尔奖得主现或曾于该校学习或工作。2022年美国USNEWS世界大学排行评比为世界第三名。2022年英国QS世界大学排行评比为世界第三名。
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="berkeley" class="overlay">
+      <div class="popup">
+        <h2 style="padding-left: 20px; padding-top: 15px;">伯克利加州大学简介</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content-popup">
+          <div class="content-image"
+            style="height: 231px; padding: 10px; justify-content: center; align-items: center; display: flex">
+            <img style="width: 90%; height: 241px"
+              src="https://thenew.university/public/uploads/courses/University of California.png">
+          </div>
+          <div class="content" style="padding: 10px;">
+            伯克利加州大学，全称伯克利加利福尼亚大学（英语：University of California，
+            Berkeley，也缩写为伯克利加大、英语：UC
+            Berkeley、Berkeley或Cal，也常译为伯克利大学或加州大学伯克利分校），是美国的一所公立研究型大学，位于旧金山东湾伯克利市的山丘上，为世界上最杰出及最享负盛名的高等公立学府。其许多科系位于全球大学排行前十名，也是美国最佳公立大学之一。<br><br>
+
+            伯克利加大是加利福尼亚大学中的旗舰大学，为最古老的一所，它也是美国大学协会的创始会员之一。学校每学期为本科生和研究生提供近300门可选课程。学校总面积为约27平方公里，中心校园面积约为0.8平方公里。<br><br>
+
+            在美国的大学运动联赛里，因以往只有一所加州大学，因此伯克利一直以加州大学（California）作校名，简称Cal，并沿用至今；其吉祥物蜕变自加州徽号，故其学生亦常自称「金色小熊」（Golden Bears／Cal
+            Bears）。<br>
+            伯克利研究水平非常坚厚，伯克利科研人员发现6种化学元素，若计入与其关系密切的劳伦斯伯克利国家实验室更多达16种，位居世界第一，其中鉳（Berkelium）更以伯克利来命名。根据美国国家科学研究委员会的调查，伯克利拥有全美最多十大杰出研究课程。伯克利分校曾有72位教职员或学生为诺贝尔奖得主、9位沃尔夫奖、7位菲尔兹奖、15位图灵奖、45位麦克阿瑟奖、20位奥斯卡金像奖及11位普立兹奖得主。2022年美国US
+            NEWS 世界大学排行评比为世界第四名。美国公立大学排行第四名。<br><br>
+
+            除了学术成就外，伯克利分校在体育运动上亦傲视全球，其校友共获得159面奥林匹克运动会奖牌（91金、40银、28铜），其中在单一年度内（2008年）曾获17面奖牌，是美国学校的历史纪录，校友纳塔莉·考芙林是首位在同一届奥运（2008年）中获得六面奖牌的女性、11面奖牌（包括8面金牌）得主马特·尼古拉斯·比昂迪更打破12项世界纪录；学校赛艇代表队曾三次代表美国在奥运会夺金亦是世界纪录。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
